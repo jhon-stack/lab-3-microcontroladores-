@@ -1,7 +1,6 @@
 '''
 Este programa guarda datos en el csv despues de ser cerrado, mientras no se cierre no guardara nada.
 Falta corregirle eso.
-Tambien falta ponerle para que imprima en la terminal en tiempo real.
 '''
 import serial
 import csv
@@ -15,7 +14,7 @@ writer = csv.writer(f)
 while True:
     value = ser.readline().decode().split(' ')
     writer.writerow(value)#Escribir en la fila el valor obetenido
-    print(value)
+    print(value)#Imprime en pantalla 
 
 
 f.close()
