@@ -1,43 +1,34 @@
-/*Universidad de Costa Rica
-IE-0624 Laboratorio de Microcontroladores
-Prof: Marco Villalta Fallas
-Estudiantes: Jhon Gaitan Aguilar B73059 y Alex Varela 
-Laboratorio 3
-Voltimetro
-Ciclo: III-2022
-*/
-////////////////////////////////////////////////////////////////////////////////
-//Includes:
-//Nota: Agregar esta libreria pudo hacerse agregando el zip dentro del IDE
-//      Yo lo hice agregando descomprimiendo ese zip y agregando manualmente el folder en el path </usr/share/arduino/libraries/>
+//Votímetro digital DC 0-30V con Arduino
+
 #include </usr/share/arduino/libraries/pcd8544-master/PCD8544.h>
 #include </usr/share/arduino/libraries/pcd8544-master/PCD8544.cpp>
-//Puede que hagan falta mas Includes.
-////////////////////////////////////////////////////////////////////////////////
-//Con respecto a la libreroia PCD8544, para que funciones se deben conectar a los pines del Arduino 1 (digital) de la siguiente manera:
-/*
-  No se exactamente donde esta definido esto, creo que es en PCD8544.cpp | PCD8544.h. Incluso se podrian cambiar
-  *RST  -> PIN[6]
-  *CS   -> PIN[7]
-  *CLK  -> PIN[3]
-  *DIN  -> PIN[4]
-  *D/C  -> PIN[5]
 
-*/ 
+static PCD8544 lcd;
 
-static PCD8544 lcd;//
+//LiquidCrystal lcd(7, 8, 9, 10, 11, 12); // Le indicamos los pines digitales de conexión LCD
+int analogInput = 0; //Definimos el pin analógico A0 para la lectura del voltaje
+//float vout = 0.0; //Definimos la variable Vout
+//float vin = 0.0; //Definimos la variable Vin
+//float R1 = 100000.0; //  R1 (100K) Valor de la resistencia R1 del divisor de tensión
+//float R2 = 10000.0; //  R2 (10K) Valor de la resistencia R2 del divisor de tención
+//int value = 0;//Definimos la variable value
 
-void setup(){
-  //Analog I/O's
-
-  //Digital I/O's 
-  pinMode(8, OUPUT);//Pin del LED que se activa si el voltaje menor a -20V o superior a 20V
-  lcd.begin(84, 48);// PCD8544-compatible displays may have a different resolution...
-
-  //Serial communication
-  
-  }
-
-void loop(){
- 
+void setup(){//////////////////////////////////////////////////////////////////////////////
+   pinMode(analogInput, INPUT); //Activamos el input del pin analógico A0
+  // PCD8544-compatible displays may have a different resolution...
+  lcd.begin(84, 48);  // Activamos LCD
+  lcd.print("DC VOLTIMETRO"); //Mostramos en el LCD este mensaje al inicio
 }
+
+void loop(){//////////////////////////////////////////////////////////////////////////////
+   //value = analogRead(analogInput); //Leemos el pin analógico A0
+   //vout = (value * 5.0) / 1024.0; // Cálculo para obtener el Vout
+   //vin = vout / (R2/(R1+R2)); // Cálculo para obtener Vin del divisor de tensión
+   //if (vin<0.09) { //Si la lectura de Vin es menor que 0.09V le decimos que nos muestre 0
+   //vin=0.0;
+} 
+//lcd.setCursor(0, 1); //Posicionamos el cursor en el LCD
+//lcd.print("INPUT V= ");//Mostramos el texto en el LCD
+//lcd.print(vin);//Mostramos el valor del Vin en el LCD
+//delay(500); //Se hace una lectura de voltaje cada 500 ms
+//}
