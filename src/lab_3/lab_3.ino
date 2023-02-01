@@ -12,10 +12,11 @@ float vin = 0.0; //Definimos la variable Vin
 float R1 = 200000.0; //  R1 (200K) Valor de la resistencia R1 del divisor de tensión
 float R2 = 1000000.0; //  R2 (1M) Valor de la resistencia R2 del divisor de tención
 int value = 0;//Definimos la variable value
+int vin_aux;//Variable para la comunicacion serial
 
 void setup(){//////////////////////////////////////////////////////////////////////////////
   //Modo serial:
-  serial.begin(9600);    
+  Serial.begin(9600);    
    pinMode(analogInput, INPUT); //Activamos el input del pin analógico A0
   // PCD8544-compatible displays may have a different resolution...
   lcd.begin(84, 48);  // Activamos LCD
@@ -32,10 +33,12 @@ void loop(){////////////////////////////////////////////////////////////////////
     { //Si la lectura de Vin es menor que 0.09V le decimos que nos muestre 0
       vin=0.0; 
     }
-  Serial.print(vout);
+  vin_aux = vin*5;
+  Serial.print(vin_aux);
   Serial.println(" V");   
-lcd.setCursor(0, 1); //Posicionamos el cursor en el LCD
-lcd.print("INPUT V= ");//Mostramos el texto en el LCD
-lcd.print(vin*5);//Mostramos el valor del Vin en el LCD
-delay(500); //Se hace una lectura de voltaje cada 500 ms
+  lcd.setCursor(0, 1); //Posicionamos el cursor en el LCD
+  lcd.print("INPUT V= ");//Mostramos el texto en el LCD
+  lcd.print(vin*5);//Mostramos el valor del Vin en el LCD
+  delay(500); //Se hace una lectura de voltaje cada 500 ms
 }
+
