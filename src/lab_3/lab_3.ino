@@ -13,11 +13,14 @@ float R1 = 200000.0; //  R1 (200K) Valor de la resistencia R1 del divisor de ten
 float R2 = 1000000.0; //  R2 (1M) Valor de la resistencia R2 del divisor de tención
 int value = 0;//Definimos la variable value
 int vin_aux;//Variable para la comunicacion serial
+byte SelectorNP = 0; // Variable recibe el Dato leido del Pin digital 2
+byte Pin_2 = 2; // Nombre del pin 3
 
 void setup(){//////////////////////////////////////////////////////////////////////////////
   //Modo serial:
   Serial.begin(9600);    
    pinMode(analogInput, INPUT); //Activamos el input del pin analógico A0
+   pinMode(Pin_2, INPUT); // Pin como entrada digital
   // PCD8544-compatible displays may have a different resolution...
   lcd.begin(84, 48);  // Activamos LCD
   lcd.print("DC VOLTIMETRO"); //Mostramos en el LCD este mensaje al inicio
@@ -33,12 +36,24 @@ void loop(){////////////////////////////////////////////////////////////////////
     { //Si la lectura de Vin es menor que 0.09V le decimos que nos muestre 0
       vin=0.0; 
     }
+  SelectorNP = digitalRead(Pin_2); // leemos el pin digital 3 reconocido como PIN_3
+   if (SelectorNP==0) {
+    lcd.setCursor(0, 2); //Posicionamos el cursor en el LCD
+    lcd.print("INPUT V= ");//Mostramos el texto en el LCD
+    lcd.print(vin*5);//Mostramos el valor del Vin en el LCD  
+   } else{
+    if (SelectorNP==1) {
+      lcd.setCursor(0, 2); //Posicionamos el cursor en el LCD
+      lcd.print("INPUT V= ");//Mostramos el texto en el LCD
+      lcd.print(vin*-5);//Mostramos el valor del Vin en el LCD
+      }
+   }
   vin_aux = vin*5;
   Serial.print(vin_aux);
   Serial.println(" V");   
   lcd.setCursor(0, 1); //Posicionamos el cursor en el LCD
-  lcd.print("INPUT V= ");//Mostramos el texto en el LCD
-  lcd.print(vin*5);//Mostramos el valor del Vin en el LCD
+  lcd.print("Canal 1");//Mostramos el texto en el LCD
+  //lcd.print("INPUT V= ");//Mostramos el texto en el LCD
+  //lcd.print(vin*5);//Mostramos el valor del Vin en el LCD
   delay(500); //Se hace una lectura de voltaje cada 500 ms
 }
-
