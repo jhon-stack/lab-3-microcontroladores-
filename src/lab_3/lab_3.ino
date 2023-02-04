@@ -18,7 +18,7 @@ int vin_aux;//Variable para la comunicacion serial
 byte SelectorNP = 0; // Variable recibe el Dato leido del Pin digital 2
 byte Pin_2 = 2; // Nombre del pin 2
 float Vrms = 0; // Variable para almacenar el calculo del valor RMS de fuente AC
-float voltagePeak = 30; // Variable para almacenar el calculo del valor del pico de voltaje fuente AC
+//float voltagePeak = 30; // Variable para almacenar el calculo del valor del pico de voltaje fuente AC
 long duration;  
 
 
@@ -64,27 +64,23 @@ void loop(){////////////////////////////////////////////////////////////////////
      }
    }  
    
-   if (estadoPulsador == HIGH) { // Si es operar modo AC
-        if (SelectorNP==0) {
-          Vrms = voltagePeak / sqrt(2);
-          lcd.setCursor(0, 2); //Posicionamos el cursor en el LCD
-          lcd.print("RMS V1= ");//Mostramos el texto en el LCD
-          lcd.print(Vrms);//Mostramos el valor del Vin en el LCD      
-        }
-        if (SelectorNP==1) {
-          Vrms = voltagePeak / sqrt(2);
-          lcd.setCursor(0, 2); //Posicionamos el cursor en el LCD
-          lcd.print("RMS V2= ");//Mostramos el texto en el LCD  
-          lcd.print(Vrms);//Mostramos el valor del Vin en el LCD    
-        }
+  if (estadoPulsador == HIGH) 
+  { // Si es operar modo AC
+    if(vin > Vrms)
+    {
+      Vrms = vin; 
+      lcd.setCursor(0, 2); //Posicionamos el cursor en el LCD
+      lcd.print("RMS V1= ");//Mostramos el texto en el LCD
+      lcd.print(5*Vrms/sqrt(2));}//Mostramos el valor del Vin en el LCD            
     }
+}
         
   
    
   //vin_aux = vin*5;
   //Serial.print(vin_aux);
   //Serial.println(" V");   
-  lcd.setCursor(0, 1); //Posicionamos el cursor en el LCD
-  lcd.print("Canal 1");//Mostramos el texto en el LCD\ 
+  //lcd.setCursor(0, 1); //Posicionamos el cursor en el LCD
+  //lcd.print("Canal 1");//Mostramos el texto en el LCD\ 
   //delay(0); //Se hace una lectura de voltaje cada 500 ms
-}
+
