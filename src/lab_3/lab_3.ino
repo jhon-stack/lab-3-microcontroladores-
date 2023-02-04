@@ -73,7 +73,10 @@ void loop(){////////////////////////////////////////////////////////////////////
       lcd.print("RMS V1= ");//Mostramos el texto en el LCD
       lcd.print(5*Vrms/sqrt(2));}//Mostramos el valor del Vin en el LCD            
     }
-}
+  //Esto de aqui abajo es meramente de prueba, para la comunicacion serial se deben meter en los condicionales del switch AC\DC (yo lo hago)
+  Serial.print("V: ");
+  Serial.println(vin);
+  }
         
   
    
