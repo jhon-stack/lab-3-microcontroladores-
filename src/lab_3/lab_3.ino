@@ -90,6 +90,7 @@ void setup()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 void loop()
 {
+  
   // ************** PROGRAMACION PARA CANAL 1 **********************
   // Selectores Negativo/positivo de la senal DC
   SelectorNP = digitalRead(Pin_2); // leemos el pin digital 2 reconocido como PIN_2
@@ -116,7 +117,7 @@ void loop()
       lcd.print("V1= ");   // Mostramos el texto en el LCD
       lcd.print(vin5 * 5); // Mostramos el valor del Vin en el LCD
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vdc1: ");
+      Serial.print("V1 ");
       Serial.println(vin5 * 5);
       delay(500);
     }
@@ -137,7 +138,7 @@ void loop()
         lcd.print("V1 ");     // Mostramos el texto en el LCD
         lcd.print(vin5 * -5); // Mostramos el valor del Vin en el LCD
         // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-        Serial.print("Vdc1: ");
+        Serial.print("V1 ");
         Serial.println(vin5 * -5);
         delay(500);
       }
@@ -150,7 +151,7 @@ void loop()
     if (vin5 > Vrms5)
     {
       Vrms5 = vin5;
-      if (Vrms5 > 24)
+      if (Vrms5*5*0.7071 > 17)
       {
         digitalWrite(alarma_led_1, HIGH);
       }
@@ -158,15 +159,16 @@ void loop()
       {
         digitalWrite(alarma_led_1, LOW);
       }
-      // Seteamos en la pantalla LCD
+     
+    }
+     // Seteamos en la pantalla LCD
       lcd.setCursor(12, 2);            // Posicionamos el cursor en el LCD
       lcd.print("V1 RMS:");               // Mostramos el texto en el LCD
-      lcd.print(5 * Vrms5 / sqrt(2)); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
+      lcd.print(5 * Vrms5 *0.7071); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vrms1: ");
-      Serial.println(Vrms5);
-      delay(500);
-    }
+      //Serial.print("Vrms1 ");
+      //Serial.println(5 * Vrms5 / sqrt(2));
+      //delay(500);
   }
   // ************** PROGRAMACION PARA CANAL 2 **********************
   // Selectores Negativo/positivo de la senal DC
@@ -194,7 +196,7 @@ void loop()
       lcd.print("V2= ");   // Mostramos el texto en el LCD
       lcd.print(vin4 * 5); // Mostramos el valor del Vin en el LCD
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vdc1: ");
+      Serial.print("V2 ");
       Serial.println(vin4 * 5);
       delay(500);
     }
@@ -215,7 +217,7 @@ void loop()
         lcd.print("V2 ");     // Mostramos el texto en el LCD
         lcd.print(vin4 * -5); // Mostramos el valor del Vin en el LCD
         // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-        Serial.print("Vdc1: ");
+        Serial.print("V2 ");
         Serial.println(vin4 * -5);
         delay(500);
       }
@@ -228,7 +230,7 @@ void loop()
     if (vin4 > Vrms4)
     {
       Vrms4 = vin4;
-      if (Vrms4 > 24)
+      if (Vrms4*5*0.7071 > 17)
       {
         digitalWrite(alarma_led_2, HIGH);
       }
@@ -239,11 +241,11 @@ void loop()
       // Seteamos en la pantalla LCD
       lcd.setCursor(12, 3);            // Posicionamos el cursor en el LCD
       lcd.print("V2 RMS:");               // Mostramos el texto en el LCD
-      lcd.print(5 * Vrms4 / sqrt(2)); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
+      lcd.print(5 * Vrms4 *0.7071); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vrms2: ");
-      Serial.println(Vrms4);
-      delay(500);
+      //Serial.print("Vrms2: ");
+      //Serial.println(Vrms4);
+      //delay(500);
     }
   }
   // ************** PROGRAMACION PARA CANAL 3 **********************
@@ -272,7 +274,7 @@ void loop()
       lcd.print("V3= ");   // Mostramos el texto en el LCD
       lcd.print(vin2 * 5); // Mostramos el valor del Vin en el LCD
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vdc1: ");
+      Serial.print("V3 ");
       Serial.println(vin2 * 5);
       delay(500);
     }
@@ -293,7 +295,7 @@ void loop()
         lcd.print("V3 ");     // Mostramos el texto en el LCD
         lcd.print(vin2 * -5); // Mostramos el valor del Vin en el LCD
         // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-        Serial.print("Vdc1: ");
+        Serial.print("V3 ");
         Serial.println(vin2 * -5);
         delay(500);
       }
@@ -306,7 +308,7 @@ void loop()
     if (vin2 > Vrms2)
     {
       Vrms2 = vin2;
-      if (Vrms2 > 24)
+      if (Vrms2*5*0.7071 > 17)
       {
         digitalWrite(alarma_led_3, HIGH);
       }
@@ -317,11 +319,11 @@ void loop()
       // Seteamos en la pantalla LCD
       lcd.setCursor(12, 4);            // Posicionamos el cursor en el LCD
       lcd.print("V3 RMS:");               // Mostramos el texto en el LCD
-      lcd.print(5 * Vrms2 / sqrt(2)); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
+      lcd.print(5 * Vrms2 *0.7071); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vrms3: ");
-      Serial.println(Vrms2);
-      delay(500);
+      //Serial.print("Vrms3: ");
+      //Serial.println(Vrms2);
+      //delay(500);
     }
   }
   // ************** PROGRAMACION PARA CANAL 4 **********************
@@ -350,7 +352,7 @@ void loop()
       lcd.print("V4= ");   // Mostramos el texto en el LCD
       lcd.print(vin0 * 5); // Mostramos el valor del Vin en el LCD
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vdc1: ");
+      Serial.print("V4 ");
       Serial.println(vin0 * 5);
       delay(500);
     }
@@ -371,7 +373,7 @@ void loop()
         lcd.print("V4 ");     // Mostramos el texto en el LCD
         lcd.print(vin0 * -5); // Mostramos el valor del Vin en el LCD
         // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-        Serial.print("Vdc1: ");
+        Serial.print("V4 ");
         Serial.println(vin0 * -5);
         delay(500);
       }
@@ -384,7 +386,7 @@ void loop()
     if (vin0 > Vrms0)
     {
       Vrms0 = vin0;
-      if (Vrms0 > 24)
+      if (Vrms0*5*0.7071 > 17)
       {
         digitalWrite(alarma_led_4, HIGH);
       }
@@ -393,18 +395,30 @@ void loop()
         digitalWrite(alarma_led_4, LOW);
       }
       // Seteamos en la pantalla LCD
-      lcd.setCursor(12, 5);            // Posicionamos el cursor en el LCD
-      lcd.print("V4 RMS:");               // Mostramos el texto en el LCD
-      lcd.print(5 * Vrms0 / sqrt(2)); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
+     
       // Pasamos al serial monitor que eventualmente lo pasaremos a un archivo csv
-      Serial.print("Vrms4: ");
-      Serial.println(Vrms0);
+      //Serial.print("Vrms4: ");
+      //Serial.println(Vrms0);
       delay(500);
     }
+     lcd.setCursor(12, 5);            // Posicionamos el cursor en el LCD
+      lcd.print("V4 RMS:");               // Mostramos el texto en el LCD
+      lcd.print(5 * Vrms0*0.7071); // Al voltaje mas alto le colocamos la formula de Voltaje RMS -> Vp/sqrt(2)
   }
+   if (estadoPulsador0 == HIGH)
+   {
+      Serial.print("Vrms1 ");
+      Serial.println(5 * Vrms5 / sqrt(2));
+      Serial.print("Vrms2 ");
+      Serial.println(Vrms4*5*0.7071);
+      Serial.print("Vrms3 ");
+      Serial.println(Vrms2*5*0.7071);
+      Serial.print("Vrms4 ");
+      Serial.println(Vrms0*5*0.7071);
+   }
   // ********************************PRUEBA****************************************
   // Esto de aqui abajo es meramente de prueba, para la comunicacion serial se deben meter en los condicionales del switch AC\DC (yo lo hago)
-  Serial.print("V: ");
-  Serial.println(vin5);
+ // Serial.print("V: ");
+  //Serial.println(vin5);
 } // Final de void loop()
 
