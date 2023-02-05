@@ -13,6 +13,7 @@ III-2022
 #include <math.h>
 #include <stdio.h>
 
+
 // Declaracion de Hardware y variables necesarias
 static PCD8544 lcd;
 // Definimos los nombres de los pines analogicos para la lectura del voltaje
@@ -406,3 +407,4 @@ void loop()
   Serial.print("V: ");
   Serial.println(vin5);
 } // Final de void loop()
+
