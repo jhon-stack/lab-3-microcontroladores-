@@ -34,7 +34,7 @@ Circuit Id: Switch-1031
 
 Unique  Id: WaveGen-1027: 
 Circuit Id: WaveGen-966
-<item labelrot="0" labelx="-64" Unit=" V" Volt_Base="0" objectName="WaveGen-1027" id="WaveGen-966" mainComp="false" circRot="0" boardPos="-1e+6,-1e+6" Quality="5" labely="-24" rotation="90" valLabRot="-90" valLabelx="-54" boardRot="-1e+6" Freq="1" y="-644" Show_Volt="true" circPos="0,0" vflip="1" Always_On="false" Wave_Type="0" hflip="1" valLabely="14" Duty_Square="50" Voltage="30" itemtype="WaveGen" Out="false" Show_id="false" x="424"/>
+<item labelrot="0" labelx="-64" Unit=" V" Volt_Base="0" objectName="WaveGen-1027" id="WaveGen-966" mainComp="false" circRot="0" boardPos="-1e+6,-1e+6" Quality="5" labely="-24" rotation="90" valLabRot="-90" valLabelx="-54" boardRot="-1e+6" Freq="1" y="-644" Show_Volt="true" circPos="0,0" vflip="1" Always_On="false" Wave_Type="0" hflip="1" valLabely="14" Duty_Square="50" Voltage="30" itemtype="WaveGen" Out="true" Show_id="false" x="424"/>
 
 Unique  Id: WaveGen-966: 
 Circuit Id: WaveGen-966

@@ -21,10 +21,6 @@ int alarma_led_1=   9;
 int alarma_led_2=   10;
 int alarma_led_3=   11;
 int alarma_led_4=   12;
-int state_led_1 =   0;
-int state_led_2 =   0;
-int state_led_3 =   0;
-int state_led_4 =   0;
 float vout      =   0.0; //Definimos la variable Vout
 float vin       =   0.0; //Definimos la variable Vin
 float R1        =   200000.0; //  R1 (200K) Valor de la resistencia R1 del divisor de tensión
@@ -127,6 +123,14 @@ void loop(){
     if(vin > Vrms)
     {
       Vrms = vin;
+      if (Vrms > 24)
+        {
+          digitalWrite(alarma_led_1, HIGH);
+        }     
+        else
+        {
+            digitalWrite(alarma_led_1, LOW);
+        }
       //Seteamos en la pantalla LCD 
       lcd.setCursor(0, 2); //Posicionamos el cursor en el LCD
       lcd.print("V1 ");//Mostramos el texto en el LCD
